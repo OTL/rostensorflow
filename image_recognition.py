@@ -5,8 +5,7 @@ from cv_bridge import CvBridge, CvBridgeError
 import cv2
 import numpy as np
 import tensorflow as tf
-
-import classify_image
+from tensorflow.models.image.imagenet import classify_image
 
 class RosTensorFlow():
     def __init__(self):
