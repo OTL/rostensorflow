@@ -10,13 +10,13 @@ $ sudo apt-get install ros-indigo-cv-bridge ros-indigo-cv-camera
 ```
 
 image_recognition.py
------------------
+--------------------------------
 
 * publish: /result (std_msgs/String)
 * subscribe: /image (sensor_msgs/Image)
 
 How to try
-^^^^^^^^^^^^^^^^^^^^^
+
 ```bash
 $ roscore
 $ rosrun cv_camera cv_camera_node
