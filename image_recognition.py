@@ -5,7 +5,7 @@ from cv_bridge import CvBridge
 import cv2
 import numpy as np
 import tensorflow as tf
-from tensorflow.models.image.imagenet import classify_image
+import classify_image
 
 
 class RosTensorFlow():
@@ -23,7 +23,7 @@ class RosTensorFlow():
     def callback(self, image_msg):
         cv_image = self._cv_bridge.imgmsg_to_cv2(image_msg, "bgr8")
         # copy from
-        # https://github.com/tensorflow/tensorflow/blob/master/tensorflow/models/image/imagenet/classify_image.py
+        # classify_image.py
         image_data = cv2.imencode('.jpg', cv_image)[1].tostring()
         # Creates graph from saved GraphDef.
         softmax_tensor = self._session.graph.get_tensor_by_name('softmax:0')
@@ -44,6 +44,7 @@ class RosTensorFlow():
         rospy.spin()
 
 if __name__ == '__main__':
+    classify_image.setup_args()
     rospy.init_node('rostensorflow')
     tensor = RosTensorFlow()
     tensor.main()
